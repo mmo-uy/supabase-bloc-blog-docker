@@ -1,0 +1,15 @@
+version: "3.8"
+services:
+  proxy:
+    build: ./
+    container_name: nginx-proxy
+    volumes:
+      - ./default.conf:/etc/nginx/conf.d/default.conf
+    networks:
+      - blog-dev-net
+    ports:
+      - "80:80"
+
+networks:
+  blog-dev-net:
+    external: true
