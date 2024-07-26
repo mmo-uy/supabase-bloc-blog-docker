@@ -101,8 +101,10 @@ transforms:
       parsed, err = parse_regex(.event_message, r'^(?P<time>.*): (?P<msg>.*)$')
       if err == null {
           .event_message = parsed.msg
-          .timestamp = to_timestamp!(parsed.time)
-          .metadata.host = .project
+          .timestamp, err = parse_timestamp(parsed.time, "%Y-%m-%dT%H:%M:%S%Z")
+          if err == null {
+              .metadata.host = .project
+          }
       }
   # Realtime logs are structured so we parse the severity level using regex (ignore time because it has no date)
   realtime_logs:

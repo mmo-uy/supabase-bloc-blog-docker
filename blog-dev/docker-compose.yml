@@ -1,5 +1,5 @@
 name: blog-dev
-version: "3.8"
+version: "3.9"
 services:
   studio:
     container_name: blog-dev-supabase-studio
@@ -417,7 +417,7 @@ services:
       - blog-dev-net
   vector:
     container_name: blog-dev-supabase-vector
-    image: timberio/vector:0.28.1-alpine
+    image: custom-vector
     healthcheck:
       test:
         [
